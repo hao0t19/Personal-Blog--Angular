@@ -4,10 +4,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
-  { path: '',pathMatch:'full',redirectTo:'home' }, //empty string will leead to home 
-  { path:'home',component:HomeComponent },
-  { path:'about' , component:AboutComponent },
-  { path:'**' , component:HomeComponent }, //random url will lead to home
+  { path: '', pathMatch: 'full', redirectTo: 'home' }, // Empty path leads to home
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'post/:id/:slug', loadChildren: () => import('./post/post.module').then(m => m.PostModule) },
+  { path: '**', component: HomeComponent } // Catch-all route
 ];
 
 @NgModule({

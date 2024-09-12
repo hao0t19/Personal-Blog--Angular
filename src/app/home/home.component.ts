@@ -8,12 +8,16 @@ import { IPost } from './../post.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']  
 })
+
 export class HomeComponent implements OnInit {
   //define a stream of arrays of IPost objects
   posts$!: Observable<IPost[]>;
   constructor(private wordpressService: WordpressService) { }
 
   ngOnInit(): void {
+    console.log('home.component.ts.ngONInit')
     this.posts$ = this.wordpressService.getAllPosts();
   }
 }
+
+
