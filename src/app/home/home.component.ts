@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private wordpressService: WordpressService) { }
 
   ngOnInit(): void {
-    console.log('home.component.ts.ngONInit')
     this.posts$ = this.wordpressService.getAllPosts();
   }
 }

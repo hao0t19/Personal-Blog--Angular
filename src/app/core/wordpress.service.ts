@@ -39,7 +39,6 @@ export class WordpressService {
           return [...prodPosts, ...qaPosts, ...stagingPosts];
         }),
         tap(posts => {
-          console.log('Combined posts:', posts); // Log the combined posts
           this.posts = posts; // Cache the combined posts
         })
       );
