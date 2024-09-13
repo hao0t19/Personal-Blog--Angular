@@ -3,11 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { WordpressService } from '../core/wordpress.service';
 import { IPost } from './../post.model';
 import { Observable } from 'rxjs';
+import { postsAnimation } from '../../animations';
 
 @Component({
   selector: 'pb-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  styleUrls: ['./post.component.scss'],
+  animations: [postsAnimation]
 })
 export class PostComponent implements OnInit {
   post$: Observable<IPost | null>;
