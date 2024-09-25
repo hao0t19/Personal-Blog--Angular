@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { RouteHelperService } from './route-helper.service';
 
 @Component({
   selector: 'pb-root',
@@ -16,6 +17,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class AppComponent {
+
+  constructor(private routeHelperService: RouteHelperService) {}
+  
   title = 'personal-blog';
   
   getOutlet(o: RouterOutlet) {

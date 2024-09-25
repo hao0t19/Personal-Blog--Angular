@@ -4,8 +4,8 @@ import { WordpressService } from '../core/wordpress.service';
 import { IPost } from './../post.model';
 import { Observable } from 'rxjs';
 import { postsAnimation } from '../../animations';
-import { Meta, Title } from '@angular/platform-browser';
 import { tap } from 'rxjs/operators';
+import { SeoService } from '../seo.service';
 
 @Component({
   selector: 'pb-post',
@@ -19,8 +19,7 @@ export class PostComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private wordpressService: WordpressService,
-    private titleService: Title,
-    private metaService: Meta
+    private seoService: SeoService  // Inject SeoService
   ) {
     this.post$ = this.wordpressService.post$;
   }
@@ -37,11 +36,17 @@ export class PostComponent implements OnInit {
     this.post$.pipe(
       tap(post => {
         if (post) {
-          this.titleService.setTitle(post.title.rendered); 
-          this.metaService.removeTag('name="description"'); 
-          this.metaService.addTag({
-            name: 'description',
-            content: post.excerpt.rendered 
+          // Set title and meta tags using SeoService
+          this.seoService.setTitle(post.title.rendered);
+          this.seoService.setMetaTags([
+            { name: 'description', content: post.excerpt.rendered },
+            { name: 'author', content: 'Your Name' }, // Add other relevant meta tags here
+            // You can add more standard tags as needed
+          ]);
+          // Set Open Graph tags
+          this.seoService.setOpenGraphTags({
+            title: post.title.rendered,
+            description: post.excerpt.rendered
           });
         }
       })
