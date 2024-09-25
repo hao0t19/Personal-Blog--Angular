@@ -19,6 +19,7 @@ const routes: Routes = [
     QuicklinkModule,
     RouterModule.forRoot(routes , {
     preloadingStrategy: PreloadAllModules,
+    useHash: true,
   })],
   exports: [RouterModule]
 })
