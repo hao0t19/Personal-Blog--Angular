@@ -23,7 +23,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       // headers: req.headers.set('Authorization', 'Bearer YOUR_TOKEN'),
     });
 
-    console.log('HTTP Request:', clonedRequest); // Log the request
+    //console.log('HTTP Request:', clonedRequest); // Log the request
 
     return next.handle(clonedRequest).pipe(
       catchError((error) => {
