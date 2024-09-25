@@ -180,7 +180,7 @@
     symbol-observable "4.0.0"
     yargs "17.7.2"
 
-"@angular/common@^18.0.0", "@angular/common@^18.2.0", "@angular/common@18.2.4":
+"@angular/common@^18.0.0", "@angular/common@^18.2.0", "@angular/common@>=6.0.0", "@angular/common@18.2.4":
   version "18.2.4"
   resolved "https://registry.npmjs.org/@angular/common/-/common-18.2.4.tgz"
   integrity sha512-flUaKhdr8KvtjH0cLC6Rrjirt8GsiFlrmZLZplr784O3Gkei2VBBNFoopgmlEzbVGPiIG5QlFZH9yvah6JPQZw==
@@ -208,7 +208,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^18.0.0", "@angular/core@^18.2.0", "@angular/core@18.2.4":
+"@angular/core@^18.0.0", "@angular/core@^18.2.0", "@angular/core@>=6.0.0", "@angular/core@18.2.4":
   version "18.2.4"
   resolved "https://registry.npmjs.org/@angular/core/-/core-18.2.4.tgz"
   integrity sha512-ulYmYpI/ZVQ5BL38rBy4DS/9wgGWmVD9Uo6tcrLqCzt1G1G2nKwseZv009536pHfk6dj2HdPSkpcerhWh57DWw==
@@ -236,7 +236,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-server@^18.0.0", "@angular/platform-server@^18.2.0":
+"@angular/platform-server@^18.0.0", "@angular/platform-server@^18.2.0", "@angular/platform-server@>=6.0.0":
   version "18.2.4"
   resolved "https://registry.npmjs.org/@angular/platform-server/-/platform-server-18.2.4.tgz"
   integrity sha512-ix4jyN+rzkeJ/aEiWcstRHy7C4j/Q+KrXGumRLwpCkNgFRaO8YKFGGivXuPQsViCJoUzPtHu0zptJa6zSVLxyw==
@@ -251,7 +251,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/ssr@^18.2.3":
+"@angular/ssr@^18.2.4":
   version "18.2.4"
   resolved "https://registry.npmjs.org/@angular/ssr/-/ssr-18.2.4.tgz"
   integrity sha512-HYQ4gWjZz4k5Sl3qUoLzd7QnQN9avocZn1WP3tBWM+Xpvg+5cyqZMU6z/u4ls80HPP021HViisi97kbBKi1Qpg==
@@ -1479,6 +1479,11 @@
   version "18.2.4"
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-18.2.4.tgz"
   integrity sha512-JVDRexu3q7lg2oqJG36RtX7cqTheoZRwg2HhMV8hYXUDL0fyOrv2galwTCgXrx7vAjlx45L2uR2kuWbgW0VVcQ==
+
+"@nguniversal/express-engine@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.npmjs.org/@nguniversal/express-engine/-/express-engine-7.0.1.tgz"
+  integrity sha512-B4slbEGEPeTLp6RQBDc0ZASZZ2APhwiytM21XSrMAdcRMu6zWn1dcXwo46MMWL33751u9aUhorpVD4aL3Yfonw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3166,7 +3171,7 @@ exponential-backoff@^3.1.1:
   resolved "https://registry.npmjs.org/exponential-backoff/-/exponential-backoff-3.1.1.tgz"
   integrity sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==
 
-express@^4.17.3, express@^4.18.2:
+express@^4.15.2, express@^4.17.3, express@^4.18.2:
   version "4.21.0"
   resolved "https://registry.npmjs.org/express/-/express-4.21.0.tgz"
   integrity sha512-VqcNGcj/Id5ZT1LZ/cfihi3ttTn+NJmkli2eZADigjq29qTlWi/hAQ43t/VLPq8+UX06FCEx3ByOYet6ZFblng==
