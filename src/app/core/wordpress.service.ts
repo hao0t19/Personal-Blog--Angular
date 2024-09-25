@@ -1,4 +1,3 @@
-// src/app/services/wordpress.service.ts
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable, forkJoin } from 'rxjs';
@@ -76,9 +75,15 @@ export class WordpressService {
     }
 
     // Fetch the post from all environments
-    const prodPost$ = this.http.get<IPost>(`${prodEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`);
-    const qaPost$ = this.http.get<IPost>(`${qaEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`);
-    const stagingPost$ = this.http.get<IPost>(`${stagingEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`);
+    const prodPost$ = this.http.get<IPost>(`${prodEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`).pipe(
+      catchError(() => of(null))
+    );
+    const qaPost$ = this.http.get<IPost>(`${qaEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`).pipe(
+      catchError(() => of(null))
+    );
+    const stagingPost$ = this.http.get<IPost>(`${stagingEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`).pipe(
+      catchError(() => of(null))
+    );
 
     // Use forkJoin to combine the API responses
     forkJoin([prodPost$, qaPost$, stagingPost$]).pipe(
@@ -88,13 +93,14 @@ export class WordpressService {
       }),
       tap(post => {
         this.post$.next(post); // Emit the found post
-
+        console.log(post)
         // Store the post in TransferState if on the server
         if (isPlatformServer(this.platformId)) {
-          console.log('Storing post in TransferState', post);
           this.transferState.set(postKey, post);
         }
       })
     ).subscribe();
   }
+
+  
 }
