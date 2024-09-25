@@ -22,7 +22,6 @@ const POSTS_URL = 'wp-json/wp/v2/posts';
 export class WordpressService {
     posts: IPost[] = [];
     //subject to emit individual post updates
-    //post$: Subject<IPost> = new Subject<IPost>();
     post$ = new BehaviorSubject<IPost | null>(null);
 
 
@@ -46,7 +45,9 @@ export class WordpressService {
 
    //Fetch a single post by ID
    getPost(id: number): void {
+    //sends an HTTP get request to retrieve a post from the specified URL
     const prodPost$ = this.http.get<IPost>(`${prodEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`).pipe(
+      //return null if face error
       catchError(() => of(null))
     );
     const qaPost$ = this.http.get<IPost>(`${qaEnv.WORDPRESS_REST_URL}${POSTS_URL}/${id}`).pipe(
@@ -56,11 +57,15 @@ export class WordpressService {
       catchError(() => of(null))
     );
 
+    //join all the retrieved data from url 
     forkJoin([prodPost$, qaPost$, stagingPost$]).pipe(
+      //
       map(postsArray => {
         return postsArray.find(post => post !== null) || null;
       }),
+      //side effect operator , takes the found post and pushes it to behavior subject to nodify any scubscribers of the result
       tap(post => this.post$.next(post))
+      //executes the entire process, trigger the HTTP request and allow the observables to emit their value
     ).subscribe();
   }
 

@@ -14,4 +14,5 @@ import { provideHttpClient } from '@angular/common/http';
     provideHttpClient()  // Provides HttpClient for dependency injection
   ]
 })
+
 export class CoreModule { }
