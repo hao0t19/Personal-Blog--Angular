@@ -4,6 +4,8 @@ import { WordpressService } from '../core/wordpress.service';
 import { IPost } from './../post.model';
 import { Observable } from 'rxjs';
 import { postsAnimation } from '../../animations';
+import { Meta, Title } from '@angular/platform-browser';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'pb-post',
@@ -16,7 +18,9 @@ export class PostComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private wordpressService: WordpressService
+    private wordpressService: WordpressService,
+    private titleService: Title,
+    private metaService: Meta
   ) {
     this.post$ = this.wordpressService.post$;
   }
@@ -28,5 +32,19 @@ export class PostComponent implements OnInit {
         this.wordpressService.getPost(postId); // Fetch the specific post
       }
     });
+
+    // Subscribe to the post$ observable to get the post data
+    this.post$.pipe(
+      tap(post => {
+        if (post) {
+          this.titleService.setTitle(post.title.rendered); 
+          this.metaService.removeTag('name="description"'); 
+          this.metaService.addTag({
+            name: 'description',
+            content: post.excerpt.rendered 
+          });
+        }
+      })
+    ).subscribe();
   }
 }
