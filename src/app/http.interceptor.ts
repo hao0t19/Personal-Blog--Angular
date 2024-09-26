@@ -1,5 +1,4 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-// src/app/interceptors/http-request.interceptor.ts
 import {
   HttpInterceptor,
   HttpRequest,
