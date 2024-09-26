@@ -17,21 +17,20 @@ export class RouteHelperService {
       map(() => this.activatedRoute),
       filter(route => route.outlet === 'primary'),
     ).subscribe((activeRoute: ActivatedRoute) => {
-      const seo = activeRoute.snapshot.data['seo']; // Use bracket notation here
+      const seo = activeRoute.snapshot.data['seo']; 
       if (seo) {
         this.seoService.setMetaTags([
           { name: 'description', content: seo.description },
-          // Add more meta tags as needed
         ]);
 
         this.seoService.setOpenGraphTags({
           title: seo.title,
           description: seo.description,
           image: seo.shareImg,
-          url: window.location.href, // Assuming you want the current URL
+          url: window.location.href, 
         });
 
-        this.seoService.setTitle(seo.title); // Set the title
+        this.seoService.setTitle(seo.title); 
       }
     });
   }

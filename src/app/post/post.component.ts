@@ -19,31 +19,28 @@ export class PostComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private wordpressService: WordpressService,
-    private seoService: SeoService  // Inject SeoService
+    private seoService: SeoService  
   ) {
     this.post$ = this.wordpressService.post$;
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const postId = +params['id']; // Extract post ID from URL
+      const postId = +params['id'];
       if (postId) {
-        this.wordpressService.getPost(postId); // Fetch the specific post
+        this.wordpressService.getPost(postId); 
       }
     });
 
-    // Subscribe to the post$ observable to get the post data
     this.post$.pipe(
       tap(post => {
         if (post) {
-          // Set title and meta tags using SeoService
           this.seoService.setTitle(post.title.rendered);
           this.seoService.setMetaTags([
             { name: 'description', content: post.excerpt.rendered },
-            { name: 'author', content: 'Your Name' }, // Add other relevant meta tags here
-            // You can add more standard tags as needed
+            { name: 'author', content: 'Your Name' }, 
           ]);
-          // Set Open Graph tags
+          
           this.seoService.setOpenGraphTags({
             title: post.title.rendered,
             description: post.excerpt.rendered

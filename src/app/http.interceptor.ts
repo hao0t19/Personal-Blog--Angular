@@ -17,18 +17,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // Clone the request to add any necessary headers
     const clonedRequest = req.clone({
-      // Example: Add an Authorization header
-      // headers: req.headers.set('Authorization', 'Bearer YOUR_TOKEN'),
     });
-
-    //console.log('HTTP Request:', clonedRequest); // Log the request
 
     return next.handle(clonedRequest).pipe(
       catchError((error) => {
-        console.error('HTTP Error:', error); // Handle errors globally
-        return of(error); // Return an observable with the error
+        console.error('HTTP Error:', error); 
+        return of(error); 
       })
     );
   }

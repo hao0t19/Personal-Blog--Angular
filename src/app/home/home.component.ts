@@ -26,18 +26,15 @@ import { SeoService } from '../seo.service';
 })
 
 export class HomeComponent implements OnInit {
-  // Define a stream of arrays of IPost objects
   posts$!: Observable<IPost[]>;
 
   constructor(
     private wordpressService: WordpressService,
-    private seoService: SeoService  // Inject SeoService
+    private seoService: SeoService  
   ) {}
 
   ngOnInit(): void {
     this.posts$ = this.wordpressService.getAllPosts();
-
-    // Use the injected seoService to set title and meta tags
     this.seoService.setTitle('My Personal Blog - Home Page');
     this.seoService.setMetaTags([
       { name: 'description', content: 'My Personal Blog where I write about my life and hobbies' }
